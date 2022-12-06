@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="$(basename "$0") [-w working_dir] [-f metadata_file] [-c rdp_classifier] [-u unite_classifier] [-r rdp_reference_seq] [-t unite_reference_seq]"
+usage="$(basename "$0") [-w working_dir] [-f metadata_file] [-l trunc_len] [-c rdp_classifier] [-u unite_classifier] [-r rdp_reference_seq] [-t unite_reference_seq]"
 
 while :
 do
@@ -17,6 +17,10 @@ do
            SAMPLE_METADATA=$2
            shift 2
            ;;
+      -l)
+      	   TRUNC_LEN=$2
+           shift 2
+           ;;	
       -c)
 	   RDP_CLASSIFIER=$(realpath $2)
 	   shift 2
@@ -67,7 +71,7 @@ cd $WORKING_DIR
 
 qiime dada2 denoise-single \
   --i-demultiplexed-seqs sequences.qza \
-  --p-trunc-len 240 \
+  --p-trunc-len $TRUNC_LEN \
   --p-chimera-method consensus \
   --o-table table.qza \
   --o-representative-sequences rep-seqs.qza \
