@@ -56,13 +56,13 @@ https://sourceforge.net/projects/rdp-classifier/files/RDP_Classifier_TrainingDat
 
 https://unite.ut.ee/repository.php
 
-•	Train the RDP database classifier
+•	Train 16s and ITS database classifier
 
-./rdp_classifier.sh 
+./16s_classifier.sh 
 
 •	Train UNITE database classifier
 
-./unite_classifier.sh
+./ITS_classifier.sh
 
 (A change can be made within script which is based on primer selection used during the amplification)
 
@@ -83,6 +83,15 @@ http://qiime.org/home_static/dataFiles.html
 Or trained databases can also be downloaded from:
 
 https://docs.qiime2.org/2022.8/data-resources/
+
+**Usage**
+1) 16s_clssifier.sh
+ ./16s_classifier.sh [-w working_dir] [-r database_fastafile] [-t taxonomy_file]
+ 
+ where, -w is a parameter for working directory containing fasta file for database and its taxonomy.
+ 
+ 
+ 
 
 
 
