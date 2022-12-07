@@ -1,4 +1,6 @@
-usage="$(basename "$0") [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file] [
+#!/bin/bash
+​
+usage="$(basename "$0") [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file]"
 while :
 do
     case "$1" in
@@ -32,34 +34,35 @@ do
            ;;
     esac
 done
-
+​
 cd $WORKING_DIR
-
+​
 qiime tools import \
   --type 'FeatureData[Sequence]' \
   --input-path $DB_FASTA \
   --output-path ref-seqs.qza
-
+​
 qiime tools import \
   --type 'FeatureData[Taxonomy]' \
   --input-format HeaderlessTSVTaxonomyFormat \
   --input-path $DB_TAXONOMY \
-  --output-path taxonomy.qza
-
+  --output-path ref-taxonomy.qza
+​
 #16s V3 Forward primer -  CCTACGGGNGGCWGCAG
 #16s V4 Reverse primer  - GGACTACHVGGGTATCTAATCC
-
+​
 qiime feature-classifier extract-reads \
   --i-sequences ref-seqs.qza \
   --p-f-primer CCTACGGGNGGCWGCAG \
   --p-r-primer GGACTACHVGGGTATCTAATCC \
-  --o-reads taxonomy.qza
-
-
+  --p-trunc-len 0 \
+  --o-reads ref-seqs.qza
+​
+​
 #Train the classifier
 #Train a Naive Bayes classifier as follows, using the reference reads and taxonomy that we just created.
-
+​
 qiime feature-classifier fit-classifier-naive-bayes \
   --i-reference-reads ref-seqs.qza \
-  --i-reference-taxonomy taxonomy.qza \
+  --i-reference-taxonomy ref-taxonomy.qza \
   --o-classifier 16s_classifier.qza
