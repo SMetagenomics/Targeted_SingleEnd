@@ -1,4 +1,4 @@
-usage="$(basename "$0") [-w working_dir] [-r database_fastafile] [-t taxonomy_file]
+usage="$(basename "$0") [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file] [
 while :
 do
     case "$1" in
@@ -62,4 +62,4 @@ qiime feature-classifier extract-reads \
 qiime feature-classifier fit-classifier-naive-bayes \
   --i-reference-reads ref-seqs.qza \
   --i-reference-taxonomy taxonomy.qza \
-  --o-classifier classifier.qza
+  --o-classifier 16s_classifier.qza
