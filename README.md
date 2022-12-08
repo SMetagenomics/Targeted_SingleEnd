@@ -66,7 +66,7 @@ https://unite.ut.ee/repository.php
 
 (A change can be made within script which is based on primer selection used during the amplification)
 
-The primers which have selected in these scripts to train the classifiers are,
+The primers which have been selected in these scripts to train the classifiers are,
 
 16s V3 Forward primer - CCTACGGGNGGCWGCAG
 
