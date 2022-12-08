@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="$(basename "$0") [-w working_dir] [-f metadata_file] [-l trunc_len] [-c rdp_classifier] [-u unite_classifier] [-r 16s_reference_seq] [-s its_reference_seq]"
+usage="$(basename "$0") [-w working_dir] [-f metadata_file] [-l trunc_len] [-c 16s_classifier] [-u its_classifier] [-r 16s_ref_seq] [-s its_ref_seq]"
 
 while :
 do
