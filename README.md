@@ -109,6 +109,10 @@ At this step, artifect file for sequences is created for further analysis. As th
 
 where, -w is a directory containing with its absolute path containing containing artifect file,  -f is a metadata file parameter, the file will created automatically, -l is a truncated length parameter, which will be decided based on the demultiplexed data quality. If you decide not to truncate the sequences then it will be "0" (e.g. -l 0), -c and -u are 16s classifier and its classifier created during the 1st step respectively, -r and -s are 16s and its reference sequences created with classifier step. They will be used to evalute the sequence quality.
 
+**Result Visualization **
+
+The results can be visulized with *.qzv files using **qiime tools view *.qzv**.
+
 
 
 
