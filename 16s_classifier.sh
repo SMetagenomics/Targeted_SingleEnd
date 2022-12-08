@@ -63,6 +63,6 @@ qiime feature-classifier extract-reads \
 #Train a Naive Bayes classifier as follows, using the reference reads and taxonomy that we just created.
 ​
 qiime feature-classifier fit-classifier-naive-bayes \
-  --i-reference-reads ref-seqs.qza \
-  --i-reference-taxonomy ref-taxonomy.qza \
+  --i-reference-reads 16s-ref-seqs.qza \
+  --i-reference-taxonomy 16s-ref-taxonomy.qza \
   --o-classifier 16s_classifier.qza
