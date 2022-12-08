@@ -86,7 +86,7 @@ https://docs.qiime2.org/2022.8/data-resources/
 
 **Usage**
 
-All scripts from 1 to 4 will be run in sequence to create the related files for each command line.
+Once both 16s and ITS classifiers are created, move them to the same directory and they can be used for future analysis.
 
 1) 16s_clssifier.sh
  ./16s_classifier.sh [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file]
