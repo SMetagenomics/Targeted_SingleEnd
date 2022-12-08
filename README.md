@@ -85,6 +85,9 @@ Or trained databases can also be downloaded from:
 https://docs.qiime2.org/2022.8/data-resources/
 
 **Usage**
+
+All scripts from 1 to 4 will be run in sequence to create the related files for each command line.
+
 1) 16s_clssifier.sh
  ./16s_classifier.sh [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file]
  
@@ -96,14 +99,15 @@ https://docs.qiime2.org/2022.8/data-resources/
 
 where, -w is working directory with absolute path containing ITS database fastafile and -t is its taxonomy.
 
-3)demux.sh
+3) demux.sh
 ./demux.sh [-w working_dir] [-f manifest]
 
 where, -w is working directory with its absolute path containing fastq file and -f is a manifest.txt file which will be created automatically.
 
 At this step, artifect file for sequences is created for further analysis. As the data from Illumina are already demultiplexed, here the quality of those data will be checked and based on the quality, the truncated length (trunc_len) is selected for denoising step.
+
  
-4)targeted.sh
+4) targeted.sh
 
 ./targeted.sh [-w working_dir] [-f metadata_file] [-l trunc_len] [-c 16s_classifier] [-u its_classifier] [-r 16s_reference_seq] [-s its_reference_seq]
 
