@@ -1,6 +1,6 @@
 # Targeted_SingleEnd
 
-Qiime2 data analysis for 16s Single end sequences from Illumina 
+Qiime2 data analysis for 16/ITS Single end sequences from Illumina 
 
 Targeted_SingleEnd is a pipeline for analyzing targeted sequencing data (16s, ITS). It is only used for Single End Demultiplexed Illumina Fastq Data. 
 
