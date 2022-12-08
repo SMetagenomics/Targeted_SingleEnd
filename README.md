@@ -62,7 +62,7 @@ https://unite.ut.ee/repository.php
 
 •	Train UNITE database classifier
 
-./ITS_classifier.sh
+./its_classifier.sh
 
 (A change can be made within script which is based on primer selection used during the amplification)
 
@@ -86,12 +86,29 @@ https://docs.qiime2.org/2022.8/data-resources/
 
 **Usage**
 1) 16s_clssifier.sh
- ./16s_classifier.sh [-w working_dir] [-r database_fastafile] [-t taxonomy_file]
+ ./16s_classifier.sh [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file]
  
- where, -w is a parameter for working directory containing fasta file for database and its taxonomy.
+ where, -w is a parameter for working directory with absolute path containing fasta file and taxonomy file.
+-r is a 16s database fastafile and -t is its taxonomy.
+
+2) its_classifier.sh
+./its_classifier.sh [-w working_dir] [-u its_database_fastafile] [-t its_taxonomy_file]
+
+where, -w is working directory with absolute path containing ITS database fastafile and -t is its taxonomy.
+
+3)demux.sh
+./demux.sh [-w working_dir] [-f manifest]
+
+where, -w is working directory with its absolute path containing fastq file and -f is a manifest.txt file which will be created automatically.
+
+At this step, artifect file for sequences is created for further analysis. As the data from Illumina are already demultiplexed, here the quality of those data will be checked and based on the quality, the truncated length (trunc_len) is selected for denoising step.
  
- 
- 
+4)targeted.sh
+
+./targeted.sh [-w working_dir] [-f metadata_file] [-l trunc_len] [-c 16s_classifier] [-u its_classifier] [-r 16s_reference_seq] [-s its_reference_seq]
+
+where, -w is a directory containing with its absolute path containing containing artifect file,  -f is a metadata file parameter, the file will created automatically, -l is a truncated length parameter, which will be decided based on the demultiplexed data quality. If you decide not to truncate the sequences then it will be "0" (e.g. -l 0), -c and -u are 16s classifier and its classifier created during the 1st step respectively, -r and -s are 16s and its reference sequences created with classifier step. They will be used to evalute the sequence quality.
+
 
 
 
