@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="$(basename "$0") [-w working_dir] [-f metadata_file] [-l trunc_len] [-c rdp_classifier] [-u unite_classifier] [-r rdp_reference_seq] [-t unite_reference_seq]"
+usage="$(basename "$0") [-w working_dir] [-f metadata_file] [-l trunc_len] [-c rdp_classifier] [-u unite_classifier] [-r 16s_reference_seq] [-s its_reference_seq]"
 
 while :
 do
@@ -22,20 +22,20 @@ do
            shift 2
            ;;	
       -c)
-	   RDP_CLASSIFIER=$(realpath $2)
+	   16S_CLASSIFIER=$(realpath $2)
 	   shift 2
 	   ;;
 
       -u)
-	   UNITE_CLASSIFIER=$(realpath $2)
+	   ITS_CLASSIFIER=$(realpath $2)
 	   shift 2
 	   ;;
        -r)
-           rdp_REF_SEQ=$(realpath $2)
+           16S_REF_SEQ=$(realpath $2)
 	   shift 2
 	   ;;
-	-t)
-           unite_REF_SEQ=$(realpath $2)
+	-s)
+           ITS_REF_SEQ=$(realpath $2)
 	   shift 2
 	   ;;
        --) # End of all options
@@ -93,15 +93,15 @@ qiime feature-table tabulate-seqs \
 
 qiime quality-control evaluate-seqs \
   --i-query-sequences rep-seqs.qza \
-  --i-reference-sequences $rdp_REF_SEQ \
+  --i-reference-sequences $16S_REF_SEQ \
   --o-visualization 16s_qaulity_seq.qzv
 
 qiime quality-control evaluate-seqs \
   --i-query-sequences rep-seqs.qza \
-  --i-reference-sequences $unite_REF_SEQ \
+  --i-reference-sequences $ITS_REF_SEQ \
   --o-visualization its_qaulity_seq.qzv
 
-qiime feature-classifier classify-sklearn --i-classifier $RDP_CLASSIFIER --i-reads rep-seqs.qza --p-n-jobs -2 --o-classification taxonomy_16s.qza
+qiime feature-classifier classify-sklearn --i-classifier $16S_CLASSIFIER --i-reads rep-seqs.qza --p-n-jobs -2 --o-classification taxonomy_16s.qza
 
 qiime metadata tabulate --m-input-file taxonomy_16s.qza --o-visualization taxonomy_16s.qzv
 
@@ -117,27 +117,27 @@ qiime krona collapse-and-plot \
 --o-krona-plot 16s_krona.qzv
 
 qiime feature-classifier classify-sklearn \
- --i-classifier $UNITE_CLASSIFIER\
+ --i-classifier $ITS_CLASSIFIER\
  --i-reads rep-seqs.qza \
  --p-n-jobs -2 \
- --o-classification taxonomy_unite.qza
+ --o-classification taxonomy_its.qza
 
 
 qiime metadata tabulate \
- --m-input-file taxonomy_unite.qza \
- --o-visualization taxonomy_unite.qzv
+ --m-input-file taxonomy_its.qza \
+ --o-visualization taxonomy_its.qzv
 
 qiime taxa barplot \
  --i-table table.qza \
- --i-taxonomy taxonomy_unite.qza \
+ --i-taxonomy taxonomy_its.qza \
  --m-metadata-file $SAMPLE_METADATA \
- --o-visualization taxa-bar-plot_unite.qzv 
+ --o-visualization taxa-bar-plot_its.qzv 
 
 
 qiime krona collapse-and-plot \
 --i-table table.qza \
---i-taxonomy taxonomy_unite.qza \
---o-krona-plot unite_krona.qzv
+--i-taxonomy taxonomy_its.qza \
+--o-krona-plot unite_its.qzv
 
 
 for lev in {1..7}; do
@@ -203,7 +203,7 @@ mv feature-table_relfreq_level*.tsv 16s_feature_table_all_levels/relative_freque
 
 for lev in {1..7}; do
   qiime taxa collapse \
-  --i-table table.qza --i-taxonomy taxonomy_unite.qza \
+  --i-table table.qza --i-taxonomy taxonomy_its.qza \
   --p-level $lev \
   --o-collapsed-table table_collapsed_absfreq_level$lev.qza
 
