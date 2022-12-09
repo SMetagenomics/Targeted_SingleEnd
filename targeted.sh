@@ -22,7 +22,7 @@ do
            shift 2
            ;;	
       -c)
-	   16S_CLASSIFIER=$(realpath $2)
+	   BACTERIALDB_CLASSIFIER=$(realpath $2)
 	   shift 2
 	   ;;
 
@@ -31,7 +31,7 @@ do
 	   shift 2
 	   ;;
        -r)
-           16S_REF_SEQ=$(realpath $2)
+           BACTERIALDB_REF_SEQ=$(realpath $2)
 	   shift 2
 	   ;;
 	-s)
@@ -93,7 +93,7 @@ qiime feature-table tabulate-seqs \
 
 qiime quality-control evaluate-seqs \
   --i-query-sequences rep-seqs.qza \
-  --i-reference-sequences $16S_REF_SEQ \
+  --i-reference-sequences $BACTERIALDB_REF_SEQ \
   --o-visualization 16s_qaulity_seq.qzv
 
 qiime quality-control evaluate-seqs \
@@ -101,7 +101,7 @@ qiime quality-control evaluate-seqs \
   --i-reference-sequences $ITS_REF_SEQ \
   --o-visualization its_qaulity_seq.qzv
 
-qiime feature-classifier classify-sklearn --i-classifier $16S_CLASSIFIER --i-reads rep-seqs.qza --p-n-jobs -2 --o-classification taxonomy_16s.qza
+qiime feature-classifier classify-sklearn --i-classifier $BACTERIALDB_CLASSIFIER --i-reads rep-seqs.qza --p-n-jobs -2 --o-classification taxonomy_16s.qza
 
 qiime metadata tabulate --m-input-file taxonomy_16s.qza --o-visualization taxonomy_16s.qzv
 

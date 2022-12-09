@@ -56,7 +56,7 @@ qiime feature-classifier extract-reads \
   --p-f-primer CCTACGGGNGGCWGCAG \
   --p-r-primer GGACTACHVGGGTATCTAATCC \
   --p-trunc-len 0 \
-  --o-reads 16s-ref-seqs.qza
+  --o-reads ref-seqs.qza
 ​
 ​
 #Train the classifier

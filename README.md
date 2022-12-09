@@ -89,21 +89,18 @@ https://docs.qiime2.org/2022.8/data-resources/
 Once both 16s and ITS classifiers are created, move them to the same directory and they can be used for future analysis.
 
 1) 16s_clssifier.sh
-
- ./16s_classifier.sh [-w /absolute_path/working_dir] [-r /absolute_path/16s_database_fastafile] [-t /absolute_path/16s_taxonomy_file]
+ ./16s_classifier.sh [-w working_dir] [-r 16s_database_fastafile] [-t 16s_taxonomy_file]
  
  where, -w is a parameter for working directory with absolute path containing fasta file and taxonomy file.
 -r is a 16s database fastafile and -t is its taxonomy.
 
 2) its_classifier.sh
-
-./its_classifier.sh [-w /absolute_path/working_dir] [-u /absolute_path/its_database_fastafile] [-t /absolute_path/its_taxonomy_file]
+./its_classifier.sh [-w working_dir] [-u its_database_fastafile] [-t its_taxonomy_file]
 
 where, -w is working directory with absolute path containing ITS database fastafile and -t is its taxonomy.
 
 3) demux.sh
-
-./demux.sh [-w /absolute_path/working_dir] [-f /absolute_path/manifest]
+./demux.sh [-w working_dir] [-f manifest]
 
 where, -w is working directory with its absolute path containing fastq file and -f is a manifest.txt file which will be created automatically.
 
@@ -112,7 +109,7 @@ At this step, artifect file for sequences is created for further analysis. As th
  
 4) targeted.sh
 
-./targeted.sh [-w /absolute_path/working_dir] [-f /absolute_path/metadata_file] [-l trunc_len] [-c /absolute_path/16s_classifier] [-u /absolute_path/its_classifier] [-r /absolute_path/16s_reference_seq] [-s /absolute_path/its_reference_seq] &
+./targeted.sh [-w working_dir] [-f metadata_file] [-l trunc_len] [-c 16s_classifier] [-u its_classifier] [-r 16s_reference_seq] [-s its_reference_seq]
 
 where, -w is a directory containing with its absolute path containing containing artifect file,  -f is a metadata file parameter, the file will created automatically, -l is a truncated length parameter, which will be decided based on the demultiplexed data quality. If you decide not to truncate the sequences then it will be "0" (e.g. -l 0), -c and -u are 16s classifier and its classifier created during the 1st step respectively, -r and -s are 16s and its reference sequences created with classifier step. They will be used to evalute the sequence quality.
 
