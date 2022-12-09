@@ -112,7 +112,7 @@ At this step, artifect file for sequences is created for further analysis. As th
  
 4) targeted.sh
 
-./targeted.sh [-w /absolute_path/working_dir] [-f /absolute_path/metadata_file] [-l trunc_len] [-c /absolute_path/16s_classifier] [-u /absolute_path/its_classifier] [-r /absolute_path/16s_reference_seq] [-s /absolute_path/its_reference_seq]
+./targeted.sh [-w /absolute_path/working_dir] [-f /absolute_path/metadata_file] [-l trunc_len] [-c /absolute_path/16s_classifier] [-u /absolute_path/its_classifier] [-r /absolute_path/16s_reference_seq] [-s /absolute_path/its_reference_seq] &
 
 where, -w is a directory containing with its absolute path containing containing artifect file,  -f is a metadata file parameter, the file will created automatically, -l is a truncated length parameter, which will be decided based on the demultiplexed data quality. If you decide not to truncate the sequences then it will be "0" (e.g. -l 0), -c and -u are 16s classifier and its classifier created during the 1st step respectively, -r and -s are 16s and its reference sequences created with classifier step. They will be used to evalute the sequence quality.
 
