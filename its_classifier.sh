@@ -14,7 +14,7 @@ do
           shift 2
           ;;
       -u)
-           ITS_FASTA=$2
+           ITS_FASTA=$(realpath $2)
            shift 2
            ;;
       -t)
