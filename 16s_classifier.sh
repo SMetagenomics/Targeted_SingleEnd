@@ -13,7 +13,7 @@ do
           shift 2
           ;;
       -r)
-           DB_FASTA=$2
+           DB_FASTA=$(realpath $2)
            shift 2
            ;;
       -t)
